@@ -14,15 +14,31 @@ import java.util.ArrayList;
  * @author DELL
  */
 public class QLSV {
-    public ArrayList<SV> getAllSV() throws SQLException{
+
+    public ArrayList<SV> getAllSV() throws SQLException {
         String sql = "select * from sv;";
         ResultSet rs = DataBaseUtil.getData(sql);
         ArrayList<SV> dssv = new ArrayList<>();
-        
-        while (rs.next()) {            
+
+        while (rs.next()) {
             dssv.add(new SV(rs.getString("student_id"), rs.getString("name"), rs.getString("email")));
         }
-        
+
         return dssv;
+    }
+
+    public void add(SV sv) throws SQLException {
+        String sql = "insert into sv values('" + sv.getStudent_id() + "','" + sv.getName() + "','" + sv.getEmail() + "')";
+        DataBaseUtil.setData(sql);
+    }
+
+    public void removeInStudentID(String student_id) throws SQLException {
+        String sql = "delete from sv where student_id='" + student_id + "'";
+        DataBaseUtil.setData(sql);
+    }
+    
+    public void updateInStudenID(SV sv,String student_id) throws SQLException{
+        String sql =String.format("update sv set student_id='%s' , name = '%s', email = '%s' where student_id = '%s'",sv.getStudent_id(),sv.getName(),sv.getEmail(),student_id);
+        DataBaseUtil.setData(sql);
     }
 }
