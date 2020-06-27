@@ -6,12 +6,18 @@ import java.util.ArrayList;
 public class test {
 
     public static void main(String[] args) {
-        QLSV q = new QLSV();
+        QLSV qsv = new QLSV();
+        QLUser qu = new QLUser();
+
         try {
 //            ArrayList<SV> dssv = q.getAllSV();
 //            dssv.forEach(System.out::println);
-            SV sv = new SV("4", "nguyen", "baobaote00@gmail.com");
-            q.updateInStudenID(sv,"3");
+            user u = new user("baobaote", "chooanh");
+            if (qu.logIn(u)) {
+                System.out.println("dang nhap thanh cong!");
+            }else{
+                System.out.println("dang nhap that bai!");
+            }
             System.out.println("finish!");
         } catch (SQLException e) {
             System.out.println(e);

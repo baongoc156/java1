@@ -27,6 +27,13 @@ public class QLSV {
         return dssv;
     }
 
+    public SV getInStudentID(String student_id) throws SQLException {
+        String sql = "select * from sv where student_id = '" + student_id + "';";
+        ResultSet rs = DataBaseUtil.getData(sql);
+        rs.next();
+        return new SV(rs.getString(1), rs.getString(2), rs.getString(3));
+    }
+
     public void add(SV sv) throws SQLException {
         String sql = "insert into sv values('" + sv.getStudent_id() + "','" + sv.getName() + "','" + sv.getEmail() + "')";
         DataBaseUtil.setData(sql);
@@ -36,9 +43,9 @@ public class QLSV {
         String sql = "delete from sv where student_id='" + student_id + "'";
         DataBaseUtil.setData(sql);
     }
-    
-    public void updateInStudenID(SV sv,String student_id) throws SQLException{
-        String sql =String.format("update sv set student_id='%s' , name = '%s', email = '%s' where student_id = '%s'",sv.getStudent_id(),sv.getName(),sv.getEmail(),student_id);
+
+    public void updateInStudenID(SV sv, String student_id) throws SQLException {
+        String sql = String.format("update sv set student_id='%s' , name = '%s', email = '%s' where student_id = '%s'", sv.getStudent_id(), sv.getName(), sv.getEmail(), student_id);
         DataBaseUtil.setData(sql);
     }
 }
