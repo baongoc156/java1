@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3306
--- Thời gian đã tạo: Th6 26, 2020 lúc 07:50 AM
+-- Thời gian đã tạo: Th6 27, 2020 lúc 06:01 AM
 -- Phiên bản máy phục vụ: 10.4.10-MariaDB
 -- Phiên bản PHP: 7.3.12
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `qlsv`
 --
+CREATE DATABASE IF NOT EXISTS `qlsv` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `qlsv`;
 
 -- --------------------------------------------------------
 
@@ -42,7 +44,30 @@ CREATE TABLE IF NOT EXISTS `sv` (
 
 INSERT INTO `sv` (`student_id`, `name`, `email`) VALUES
 ('1', 'tien', 'baobaote'),
-('2', 'oanh', 'baobaote00');
+('2', 'oanh', 'baobaote00'),
+('4', 'nguyen', 'baobaote00@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `username` varchar(30) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  PRIMARY KEY (`username`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Đang đổ dữ liệu cho bảng `user`
+--
+
+INSERT INTO `user` (`username`, `password`) VALUES
+('nguyentien', 'baobaote'),
+('0908987712', 'tien'),
+('baobaote', 'chooanh');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
