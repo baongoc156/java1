@@ -25,12 +25,12 @@ public class test {
 //            int qty = 55;
 //            Ebook eb = new Ebook(id, title, author, price, qty);
 
-           int id = 8002;
-           String title = "Java XYZ";
-           String author = "Mr Author";
-           double price = 25.55;
-           int qty = 55;
-           Ebook eb = new Ebook(id, title, author, price, qty);
+            int id = 8002;
+            String title = "Java XYZ";
+            String author = "Mr Author";
+            double price = 25.55;
+            int qty = 55;
+            Ebook eb = new Ebook(id, title, author, price, qty);
             qb.add(eb);
 
             System.out.println("finish!");
