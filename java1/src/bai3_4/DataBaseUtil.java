@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class DataBaseUtil {
 
     public static Connection c;
-    public static String url = "jdbc:mysql://localhost:3306/qlsv";
+    public static String url = "jdbc:mysql://localhost:3306/ebookshop";
     public static String username = "root";
     public static String password = "";
     
