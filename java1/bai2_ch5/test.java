@@ -1,4 +1,4 @@
-package bai2;
+package bai2_ch5;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bai3_4;
+package bai3_4_ch5;
 
 //import java.util.ArrayList;
 
@@ -19,11 +19,17 @@ public class test {
         QLBook qb = new QLBook();
         
         try {
-//            ArrayList<>
-            for (Ebook ebook : qb.getAllEbook()) {
-                System.out.println(ebook);
-            }
+            int id = 1234;
+            String title = "ktlt";
+            String author = "oanh";
+            double price = 12.34;
+            int qty = 12;
+            Ebook eb = new Ebook(id, title, author, price, qty);
+//            qb.add(eb);
+            qb.updateInID(eb,1234);
+            System.out.println("finish!");
         } catch (SQLException e) {
+            System.out.println(e);
         }
     }
 }

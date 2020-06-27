@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bai2;
+package bai2_ch5;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
