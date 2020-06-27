@@ -54,7 +54,7 @@ public class QLBook {
     }
 
     public void removeInID(int id) throws SQLException {
-        String sql = "delete from books where id=" + id ;
+        String sql = "delete from books where id=" + id;
         bai3_4_ch5.DataBaseUtil.setData(sql);
     }
 
@@ -64,7 +64,31 @@ public class QLBook {
         String author = eb.getAuthor();
         double price = eb.getPrice();
         int qty = eb.getQty();
-        String sql = String.format("update books set id=%d , title = '%s', author = '%s',price = %f,qty = %d where id = %d", newid, title,author,price,qty ,id);
+        String sql = String.format("update books set id=%d , title = '%s', author = '%s',price = %f,qty = %d where id = %d",
+                newid, title, author, price, qty, id);
         bai3_4_ch5.DataBaseUtil.setData(sql);
+    }
+
+    public void inflationInTitle(double percent, String title) throws SQLException {
+        String sql1 = "select * from books where title = " + "'" + title + "'";
+        ResultSet rs = DataBaseUtil.getData(sql1);
+        rs.next();
+        String sql2 = String.format("update books set price = %f where title = '%s'",
+                (percent / 100) * rs.getDouble(4) + rs.getDouble(4), title);
+        DataBaseUtil.setData(sql2);
+    }
+
+    public void setQtyInTitle(int qty, String title) throws SQLException {
+        String sql = String.format("update books set qty = %d where title = '%s'",
+                qty, title);
+        DataBaseUtil.setData(sql);
+    }
+
+    public void removeInIDLonHon6000() throws SQLException {
+        String sql1 = "select * from books where id>6000";
+        ResultSet rs = DataBaseUtil.getData(sql1);
+        while (rs.next()) {            
+            removeInID(rs.getInt(1));
+        }
     }
 }
