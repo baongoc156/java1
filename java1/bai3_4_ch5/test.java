@@ -25,7 +25,7 @@ public class test {
 //            int qty = 55;
 //            Ebook eb = new Ebook(id, title, author, price, qty);
 
-            int id = 8002;
+            int id = 8001;
             String title = "Java XYZ";
             String author = "Mr Author";
             double price = 25.55;
