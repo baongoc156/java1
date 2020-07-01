@@ -12,12 +12,12 @@ import javax.swing.JButton;
  *
  * @author DELL
  */
-public class CalculatorTest extends javax.swing.JFrame {
+public class Calculator extends javax.swing.JFrame {
 
     /**
      * Creates new form CalculatorTest
      */
-    public CalculatorTest() {
+    public Calculator() {
         initComponents();
     }
 
@@ -54,17 +54,24 @@ public class CalculatorTest extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        IO.setFont(new java.awt.Font("Microsoft YaHei", 0, 18)); // NOI18N
+        IO.setForeground(new java.awt.Color(255, 153, 153));
         IO.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        IO.setText("0");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(IO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(IO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(IO, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(IO, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel2.setLayout(new java.awt.GridLayout(4, 0));
@@ -75,7 +82,7 @@ public class CalculatorTest extends javax.swing.JFrame {
         seven.setPreferredSize(new java.awt.Dimension(40, 40));
         seven.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ActionPerformed(evt);
+                NumberActionPerformed(evt);
             }
         });
         jPanel2.add(seven);
@@ -83,7 +90,7 @@ public class CalculatorTest extends javax.swing.JFrame {
         eight.setText("8");
         eight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ActionPerformed(evt);
+                NumberActionPerformed(evt);
             }
         });
         jPanel2.add(eight);
@@ -91,7 +98,7 @@ public class CalculatorTest extends javax.swing.JFrame {
         nice.setText("9");
         nice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ActionPerformed(evt);
+                NumberActionPerformed(evt);
             }
         });
         jPanel2.add(nice);
@@ -99,7 +106,7 @@ public class CalculatorTest extends javax.swing.JFrame {
         divide.setText("/");
         divide.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                divideActionPerformed(evt);
+                OperatorActionPerformed(evt);
             }
         });
         jPanel2.add(divide);
@@ -107,7 +114,7 @@ public class CalculatorTest extends javax.swing.JFrame {
         four.setText("4");
         four.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ActionPerformed(evt);
+                NumberActionPerformed(evt);
             }
         });
         jPanel2.add(four);
@@ -115,7 +122,7 @@ public class CalculatorTest extends javax.swing.JFrame {
         five.setText("5");
         five.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ActionPerformed(evt);
+                NumberActionPerformed(evt);
             }
         });
         jPanel2.add(five);
@@ -123,7 +130,7 @@ public class CalculatorTest extends javax.swing.JFrame {
         six.setText("6");
         six.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ActionPerformed(evt);
+                NumberActionPerformed(evt);
             }
         });
         jPanel2.add(six);
@@ -131,7 +138,7 @@ public class CalculatorTest extends javax.swing.JFrame {
         multifly.setText("*");
         multifly.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                multiflyActionPerformed(evt);
+                OperatorActionPerformed(evt);
             }
         });
         jPanel2.add(multifly);
@@ -139,7 +146,7 @@ public class CalculatorTest extends javax.swing.JFrame {
         one.setText("1");
         one.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ActionPerformed(evt);
+                NumberActionPerformed(evt);
             }
         });
         jPanel2.add(one);
@@ -147,7 +154,7 @@ public class CalculatorTest extends javax.swing.JFrame {
         two.setText("2");
         two.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ActionPerformed(evt);
+                NumberActionPerformed(evt);
             }
         });
         jPanel2.add(two);
@@ -155,7 +162,7 @@ public class CalculatorTest extends javax.swing.JFrame {
         three.setText("3");
         three.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ActionPerformed(evt);
+                NumberActionPerformed(evt);
             }
         });
         jPanel2.add(three);
@@ -163,7 +170,7 @@ public class CalculatorTest extends javax.swing.JFrame {
         minus.setText("-");
         minus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                minusActionPerformed(evt);
+                OperatorActionPerformed(evt);
             }
         });
         jPanel2.add(minus);
@@ -171,7 +178,7 @@ public class CalculatorTest extends javax.swing.JFrame {
         zero.setText("0");
         zero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ActionPerformed(evt);
+                NumberActionPerformed(evt);
             }
         });
         jPanel2.add(zero);
@@ -179,7 +186,7 @@ public class CalculatorTest extends javax.swing.JFrame {
         dot.setText(".");
         dot.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ActionPerformed(evt);
+                NumberActionPerformed(evt);
             }
         });
         jPanel2.add(dot);
@@ -195,7 +202,7 @@ public class CalculatorTest extends javax.swing.JFrame {
         sum.setText("+");
         sum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sumActionPerformed(evt);
+                OperatorActionPerformed(evt);
             }
         });
         jPanel2.add(sum);
@@ -217,67 +224,102 @@ public class CalculatorTest extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActionPerformed
+    private void NumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumberActionPerformed
         JButton btn = (JButton) evt.getSource();
-
-        String st = IO.getText() + btn.getText();
-
+        String st;
+        if (IO.getText().equals("0")) {
+            IO.setText("");
+            st = IO.getText() + btn.getText();
+        } else {
+            st = IO.getText() + btn.getText();
+        }
         IO.setText(st);
-    }//GEN-LAST:event_ActionPerformed
+    }//GEN-LAST:event_NumberActionPerformed
 
-    private void divideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_divideActionPerformed
-        if (num1 != 0) {
-            num1 /= Double.parseDouble(IO.getText());
-        } else {
+    private void OperatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OperatorActionPerformed
+        JButton btn = (JButton) evt.getSource();
+        if (opr == null) {
             num1 = Double.parseDouble(IO.getText());
+            opr = btn.getText();
+            IO.setText("0");
+        } else {
+            Double num2 = Double.parseDouble(IO.getText());
+            switch (opr) {
+                case "+":
+                    num1 += num2;
+                    break;
+                case "-":
+                    num1 -= num2;
+                    break;
+                case "*":
+                    num1 *= num2;
+                    break;
+                case "/":
+                    if (num2 == 0) {
+                        IO.setText("Không thể chia cho 0!");
+                    } else {
+                        num1 /= num2;
+                    }
+                    break;
+                default:
+                    break;
+            }
+            opr = btn.getText();
+            IO.setText("0");
         }
 
-        IO.setText("");
-    }//GEN-LAST:event_divideActionPerformed
-
-    private void multiflyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multiflyActionPerformed
-        if (num1 == 0) {
-            num1 = Double.parseDouble(IO.getText());
-        } else {
-            num1 *= Double.parseDouble(IO.getText());
-        }
-
-        IO.setText("");
-    }//GEN-LAST:event_multiflyActionPerformed
-
-    private void minusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minusActionPerformed
-        if (num1 != 0) {
-            num1 -= Double.parseDouble(IO.getText());
-            System.out.println(num1);
-        } else {
-            num1 = Double.parseDouble(IO.getText());
-            System.out.println(num1);
-        }
-
-        IO.setText("");
-    }//GEN-LAST:event_minusActionPerformed
-
-    private void sumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumActionPerformed
-       if (num1 != 0) {
-            num1 += Double.parseDouble(IO.getText());
-            System.out.println(num1);
-        } else {
-            num1 = Double.parseDouble(IO.getText());
-            System.out.println(num1);
-        }
-
-        IO.setText("");
-    }//GEN-LAST:event_sumActionPerformed
+    }//GEN-LAST:event_OperatorActionPerformed
 
     private void equalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equalsActionPerformed
-        IO.setText(num1+"");
+        Double num2 = Double.parseDouble(IO.getText());
+        double kq;
+        switch (opr) {
+            case "+":
+                kq = num1 + num2;
+                if (kq % 1 == 0) {
+                    IO.setText(String.format("%.0f", kq));
+                } else {
+                    IO.setText(kq + "");
+                }
+                break;
+            case "-":
+                kq = num1 - num2;
+                if (kq % 1 == 0) {
+                    IO.setText(String.format("%.0f", kq));
+                } else {
+                    IO.setText(kq + "");
+                }
+                break;
+            case "*":
+                kq = num1 * num2;
+                if (kq % 1 == 0) {
+                    IO.setText(String.format("%.0f", kq));
+                } else {
+                    IO.setText(kq + "");
+                }
+                break;
+            case "/":
+                if (num2 == 0) {
+                    IO.setText("Không thể chia cho 0!");
+                } else {
+                    kq = num1 / num2;
+                    if (kq % 1 == 0) {
+                        IO.setText(String.format("%.0f", kq));
+                    } else {
+                        IO.setText(kq + "");
+                    }
+                }
+                break;
+            default:
+                break;
+        }
     }//GEN-LAST:event_equalsActionPerformed
 
     /**
@@ -297,23 +339,24 @@ public class CalculatorTest extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CalculatorTest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Calculator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CalculatorTest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Calculator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CalculatorTest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Calculator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CalculatorTest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Calculator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new CalculatorTest().setVisible(true);
+            new Calculator().setVisible(true);
         });
     }
     private double num1 = 0;
-    private double num2;
+    private String opr;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel IO;
     private javax.swing.JButton divide;
