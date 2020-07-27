@@ -37,7 +37,19 @@ public class QLMonHocModel {
         monHocs.forEach((x) -> {
             boolean a = x.getMaMonHoc().equals(maMH) ? mhs.add(x) : false;
         });
-        
+
+        return mhs;
+    }
+
+    public LinkedList<MonHoc> Delete(String maMH) {
+        LinkedList<MonHoc> mhs = (LinkedList<MonHoc>) monHocs.clone();
+
+        monHocs.forEach((x) -> {
+            if (x.getMaMonHoc().equals(maMH)) {
+                mhs.remove(x);
+            }
+        });
+
         return mhs;
     }
 
