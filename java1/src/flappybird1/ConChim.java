@@ -35,7 +35,7 @@ public class ConChim {
 
     //con chim roi xuong dat
     public int tangY() {
-        return y+=2;
+        return y += 2;
     }
 
     //con chim bay len troi

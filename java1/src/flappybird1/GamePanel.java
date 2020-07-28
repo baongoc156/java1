@@ -22,7 +22,7 @@ public class GamePanel extends JPanel implements Runnable {
     private static boolean bl2 = false;
     private static boolean bl3 = false;
     private static boolean bl4 = false;
-
+    private boolean bl5 = false;
     private static boolean ketThuc = false;
 
     private Thread threadT;
@@ -54,7 +54,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         g.setColor(Color.BLACK);
         g.setFont(new Font("Calibri", Font.ROMAN_BASELINE, 20));
-        g.drawString("diem: " + diem, 10, 20);
+        g.drawString("Điểm: " + diem, 10, 20);
     }
 
     // implements Runnable thư viện để chạy game
@@ -83,19 +83,13 @@ public class GamePanel extends JPanel implements Runnable {
 
             conchimT.tangY(); // con chim tu roi xuong dat chet
 
-            
-//            if (arg0.getKeyCode() == KeyEvent.VK_I) {
-//                if (arg0.getKeyCode() == KeyEvent.VK_E) {
-//                    if (arg0.getKeyCode() == KeyEvent.VK_N) {
-//
-//                    }
-//                }
-//            }
-
-            // kiem tra dieu kien neu chet thi dung game
-            if (chet() == true) {
+            if (chet() == true && bl5) {
                 ketThuc = true;
                 threadT.stop();
+            }
+            
+            if (chet() == true) {
+                bl5 = true;
             }
 
             quaOngTangDiem(conchimT, ongnuoc1);
@@ -110,7 +104,7 @@ public class GamePanel extends JPanel implements Runnable {
     public boolean chet() {
 
         // khi con chim cham dat
-        if (conchimT.getY() + ConChim.kichThuoc >= 400) {
+        if (ConChim.getY() + ConChim.kichThuoc >= 400) {
             return true;
         }
         // khi con chim cham ong nuoc
@@ -120,23 +114,27 @@ public class GamePanel extends JPanel implements Runnable {
                 || coVaCham(conchimT, ongnuoc3) || coVaCham(conchimT, ongnuoc4);
     }
 
-    private boolean coVaCham(ConChim chim, Ong ong) {
-        boolean c = (chim.getX() + ConChim.kichThuoc) >= ong.getX();//chui vô lỗ
+    public boolean coVaCham(ConChim chim, Ong ong) {
+        boolean c = (chim.getX() + chim.kichThuoc) >= ong.getX();//chui vô lỗ
         boolean d = chim.getY() <= ong.getH();//nằm giữa lỗ
-        boolean a = (d && c && chim.getX() <= (ong.getX() + Ong.PI));
+        boolean e = chim.getX() <= (ong.getX() + Ong.PI);
 
-        boolean b = chim.getY() + ConChim.kichThuoc >= ong.getH() + Ong.TRONG
-                && (((chim.getX() + ConChim.kichThuoc) >= ong.getX()))
-                && chim.getX() <= (ong.getX() + Ong.PI);
+        boolean a = d && c && e;
+
+        boolean h = chim.getY() + chim.kichThuoc >= ong.getH() + Ong.TRONG;
+        boolean f = (chim.getX() + chim.kichThuoc) >= ong.getX();
+        boolean g = chim.getX() <= (ong.getX() + Ong.PI);
+
+        boolean b = h && f && g;
 
         return a || b;
     }
 
     private void quaOngTangDiem(ConChim chim, Ong ong) {
-        if (chim.getX() + ConChim.kichThuoc > ong.getX() && chim.getX() < ong.getX() + 65) {
+        if (ConChim.getX() + ConChim.kichThuoc > ong.getX() && ConChim.getX() < ong.getX() + 65) {
             ong.setChuaQua(true);
         }
-        if (ong.isChuaQua() == true && chim.getX() > ong.getX() + 65) {
+        if (ong.isChuaQua() == true && ConChim.getX() > ong.getX() + 65) {
             diem++;
             ong.setChuaQua(false);
         }

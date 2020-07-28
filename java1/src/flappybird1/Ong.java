@@ -43,7 +43,7 @@ public class Ong {
         }
         return x;
     }
-
+//
     public int getH() {
         if (sieuNangLuc) {
             return 0;
@@ -62,8 +62,7 @@ public class Ong {
     // chieu dai ngau nhien cua 1 ong nuoc
     public void ngaunhien() {
         Random rd = new Random();
-
-        h = 100 + rd.nextInt(200); // h1 se bang 1 so ngau nhien trong khoang 0
+        h = 50 + rd.nextInt(200); // h1 se bang 1 so ngau nhien trong khoang 0
         // - 199
 
     }
@@ -92,7 +91,7 @@ public class Ong {
 
     // ong nuoc lap lai theo chieu X
     public void laplaiX() {
-        if (x == -PI - 1) {
+        if (x <= -PI) {
             x = rongMax;
         }
     }
