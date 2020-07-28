@@ -12,6 +12,16 @@ public class Ong {
     public static int TRONG = 100;// khoang trong giua 2 ong nuoc
     private int x;//what the hell
 
+    private static boolean sieuNangLuc = false;
+
+    public static boolean isSieuNangLuc() {
+        return sieuNangLuc;
+    }
+
+    public static void setSieuNangLuc(boolean sieuNangLuc) {
+        Ong.sieuNangLuc = sieuNangLuc;
+    }
+
     private int h;
 
     private boolean chuaQua = false;
@@ -25,11 +35,19 @@ public class Ong {
         this.x = x;
     }
 
+    
+
     public int getX() {
+        if (sieuNangLuc) {
+            return 0;
+        }
         return x;
     }
 
     public int getH() {
+        if (sieuNangLuc) {
+            return 0;
+        }
         return h;
     }
 
@@ -69,12 +87,12 @@ public class Ong {
 
     // ong nuoc di chuyen giam theo chieu X
     public void giamX() {
-        x-=2;
+        x -= 2;
     }
 
     // ong nuoc lap lai theo chieu X
     public void laplaiX() {
-        if (x == -PI-1) {
+        if (x == -PI - 1) {
             x = rongMax;
         }
     }
