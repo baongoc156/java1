@@ -3,6 +3,8 @@ package flappybird1;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -70,7 +72,7 @@ public class GamePanel extends JPanel implements Runnable {
             ongnuoc4.giamX();
 
             try {
-                Thread.sleep(10); // chuong trinh dung lai 20 ms
+                Thread.sleep(15); // chuong trinh dung lai 20 ms
             } catch (InterruptedException e) {
             }
 
@@ -80,6 +82,15 @@ public class GamePanel extends JPanel implements Runnable {
             ongnuoc4.laplaiX();
 
             conchimT.tangY(); // con chim tu roi xuong dat chet
+
+            
+//            if (arg0.getKeyCode() == KeyEvent.VK_I) {
+//                if (arg0.getKeyCode() == KeyEvent.VK_E) {
+//                    if (arg0.getKeyCode() == KeyEvent.VK_N) {
+//
+//                    }
+//                }
+//            }
 
             // kiem tra dieu kien neu chet thi dung game
             if (chet() == true) {
@@ -110,12 +121,15 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     private boolean coVaCham(ConChim chim, Ong ong) {
-        return (chim.getY() <= ong.getH()
+        boolean c = (chim.getX() + ConChim.kichThuoc) >= ong.getX();//chui vô lỗ
+        boolean d = chim.getY() <= ong.getH();//nằm giữa lỗ
+        boolean a = (d && c && chim.getX() <= (ong.getX() + Ong.PI));
+
+        boolean b = chim.getY() + ConChim.kichThuoc >= ong.getH() + Ong.TRONG
                 && (((chim.getX() + ConChim.kichThuoc) >= ong.getX()))
-                    && chim.getX() <= (ong.getX() + Ong.PI))
-                    || (chim.getY() + ConChim.kichThuoc >= ong.getH() + Ong.TRONG
-                    && (((chim.getX() + ConChim.kichThuoc) >= ong.getX()))
-                    && chim.getX() <= (ong.getX() + Ong.PI));
+                && chim.getX() <= (ong.getX() + Ong.PI);
+
+        return a || b;
     }
 
     private void quaOngTangDiem(ConChim chim, Ong ong) {

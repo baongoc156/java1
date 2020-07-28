@@ -33,6 +33,14 @@ public class FlappyBird extends JFrame {
             @Override
             public void keyPressed(KeyEvent arg0) {
 
+                if (arg0.getKeyCode() == KeyEvent.VK_T) {
+                    Ong.setSieuNangLuc(true);
+                }
+
+                if (arg0.getKeyCode() == KeyEvent.VK_O) {
+                    Ong.setSieuNangLuc(false);
+                }
+
                 if (conchimM.getY() >= 0) {
                     conchimM.giamY();
                 }
