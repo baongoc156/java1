@@ -112,10 +112,10 @@ public class GamePanel extends JPanel implements Runnable {
     private boolean coVaCham(ConChim chim, Ong ong) {
         return (chim.getY() <= ong.getH()
                 && (((chim.getX() + ConChim.kichThuoc) >= ong.getX()))
-                    && chim.getX() <= (ong.getX() + Ong.PI))
-                    || (chim.getY() + ConChim.kichThuoc >= ong.getH() + Ong.TRONG
-                    && (((chim.getX() + ConChim.kichThuoc) >= ong.getX()))
-                    && chim.getX() <= (ong.getX() + Ong.PI));
+                && chim.getX() <= (ong.getX() + Ong.PI))
+            || (chim.getY() + ConChim.kichThuoc >= ong.getH() + Ong.TRONG
+                && (((chim.getX() + ConChim.kichThuoc) >= ong.getX()))
+                && chim.getX() <= (ong.getX() + Ong.PI));
     }
 
     private void quaOngTangDiem(ConChim chim, Ong ong) {
