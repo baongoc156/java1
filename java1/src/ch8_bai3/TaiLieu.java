@@ -48,8 +48,5 @@ abstract class TaiLieu {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "TaiLieu{" + "maSach=" + maSach + ", tenNXB=" + tenNXB + ", tenTaiLieu=" + tenTaiLieu + ", price=" + price + '}';
-    }
+    public abstract double chuongTrinhKhuyenMai();
 }

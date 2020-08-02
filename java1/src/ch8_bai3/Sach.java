@@ -30,6 +30,14 @@ public class Sach extends TaiLieu{
     }
 
     @Override
+    public double chuongTrinhKhuyenMai() {
+        if (tenTG.equals("ABC")) {
+            setPrice(getPrice()*0.95);
+        }
+        return getPrice();
+    }
+    
+    @Override
     public String toString() {
         return "Sach{" + "tenTG=" + tenTG + ", soTrang=" + soTrang + '}';
     }

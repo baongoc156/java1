@@ -2,14 +2,14 @@ package ch8_bai3;
 
 public class TapChi extends TaiLieu{
 
-    private String soPhatHanh;
+    private int soPhatHanh;
     private int thangPhatHanh;
 
-    public String getSoPhatHanh() {
+    public int getSoPhatHanh() {
         return soPhatHanh;
     }
 
-    public void setSoPhatHanh(String soPhatHanh) {
+    public void setSoPhatHanh(int soPhatHanh) {
         this.soPhatHanh = soPhatHanh;
     }
 
@@ -24,7 +24,7 @@ public class TapChi extends TaiLieu{
     public TapChi() {
     }
 
-    public TapChi(String soPhatHanh, int thangPhatHanh, String maSach, String tenNXB, String tenTaiLieu, double price) {
+    public TapChi(int soPhatHanh, int thangPhatHanh, String maSach, String tenNXB, String tenTaiLieu, double price) {
         super(maSach, tenNXB, tenTaiLieu, price);
         this.soPhatHanh = soPhatHanh;
         this.thangPhatHanh = thangPhatHanh;
@@ -34,6 +34,13 @@ public class TapChi extends TaiLieu{
     public String toString() {
         return "TapChi{" + "soPhatHanh=" + soPhatHanh + ", thangPhatHanh=" + thangPhatHanh + '}';
     }
-    
-    
+
+    @Override
+    public double chuongTrinhKhuyenMai() {
+        if (soPhatHanh%2==0) {
+            setPrice(getPrice() *0.9);
+            return getPrice();
+        }
+        return getPrice();
+    }
 }

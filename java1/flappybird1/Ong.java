@@ -2,7 +2,11 @@ package flappybird1;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
+import javax.imageio.ImageIO;
 
 public class Ong {
 
@@ -35,8 +39,6 @@ public class Ong {
         this.x = x;
     }
 
-    
-
     public int getX() {
         if (sieuNangLuc) {
             return 0;
@@ -44,6 +46,7 @@ public class Ong {
         return x;
     }
 //
+
     public int getH() {
         if (sieuNangLuc) {
             return 0;
@@ -70,18 +73,14 @@ public class Ong {
     // ve ong nuoc
     public void paint(Graphics g) {
         g.setColor(Color.GREEN);
-        g.fillRect(x, 0, PI, h);
 
-        g.fillRect(x, h + TRONG, PI, caoMax - h - TRONG);
-        g.setColor(Color.black);
-
-        g.drawLine(x, 0, x, h);
-        g.drawLine(x, h, PI + x, h);
-        g.drawLine(x + PI, 0, PI + x, h);
-
-        g.drawLine(x, h + TRONG, x, caoMax);
-        g.drawLine(x, h + TRONG, x + PI, h + TRONG);
-        g.drawLine(x + PI, h + TRONG, x + PI, caoMax);
+        try {
+            BufferedImage img1 = ImageIO.read(new File("./res/OngnuocTren.png"));
+            g.drawImage(img1, x, 0, PI, h, null);
+            BufferedImage img2 = ImageIO.read(new File("./res/OngnuocDuoi.png"));
+            g.drawImage(img2,x, h + TRONG, PI, caoMax - h - TRONG, null);
+        } catch (IOException e) {
+        }
     }
 
     // ong nuoc di chuyen giam theo chieu X
@@ -90,9 +89,11 @@ public class Ong {
     }
 
     // ong nuoc lap lai theo chieu X
-    public void laplaiX() {
+    public boolean laplaiX() {
         if (x <= -PI) {
             x = rongMax;
+            return true;
         }
+        return false;
     }
 }

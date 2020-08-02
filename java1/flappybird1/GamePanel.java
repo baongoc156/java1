@@ -3,8 +3,10 @@ package flappybird1;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -15,17 +17,20 @@ public class GamePanel extends JPanel implements Runnable {
     private Ong ongnuoc3 = new Ong(1000 + 280 * 2);
     private Ong ongnuoc4 = new Ong(1000 + 280 * 3);
     // private KiemTra kiemtraT = new KiemTra();
-
+    private Replay r = new Replay();
     private static int diem = 0;
 
     private static boolean bl1 = false;
     private static boolean bl2 = false;
     private static boolean bl3 = false;
     private static boolean bl4 = false;
-    private boolean bl5 = false;
-    private static boolean ketThuc = false;
+    int xuathien = 0;
+
+    public static boolean ketThuc = false;
 
     private Thread threadT;
+
+    private ConMoi conMoiT = new ConMoi();
 
     public GamePanel() {
         threadT = new Thread(this);
@@ -36,68 +41,94 @@ public class GamePanel extends JPanel implements Runnable {
     // ve cac nhan vat trong game
     @Override
     public void paint(Graphics g) {
-
-        g.setColor(Color.CYAN);
-        g.fillRect(0, 0, getWidth(), getHeight());
-
+        try {
+            BufferedImage img1 = ImageIO.read(new File("./res/BG.png"));
+            g.drawImage(img1, 0, 0, getWidth(), getHeight(), this);
+            BufferedImage img2 = ImageIO.read(new File("./res/NenDat.png"));
+            g.drawImage(img2, 0, 400, getWidth(), 100, this);
+        } catch (IOException e) {
+        }
         // them ong nuoc vao nen game
         ongnuoc1.paint(g);
         ongnuoc2.paint(g);
         ongnuoc3.paint(g);
         ongnuoc4.paint(g);
 
-        g.setColor(Color.ORANGE);
-        g.fillRect(0, 400, getWidth(), getHeight());
-
+//        g.setColor(Color.ORANGE);
+//        g.fillRect(0, 400, getWidth(), getHeight());
         // them con chim vao game
-        conchimT.paint(g);
+        if (!ketThuc) {
+            conchimT.paint(g);
+            conMoiT.paint(g);
+        }
+
+        if (ketThuc) {
+            try {
+                BufferedImage img1 = ImageIO.read(new File("./res/GameOver.png"));
+                g.drawImage(img1, getWidth() / 2 - 120, getHeight() / 2 - 80, this);
+            } catch (IOException e) {
+            }
+        }
+//        r.paint(g);
 
         g.setColor(Color.BLACK);
         g.setFont(new Font("Calibri", Font.ROMAN_BASELINE, 20));
         g.drawString("Điểm: " + diem, 10, 20);
     }
+    int i = 0;
 
     // implements Runnable thư viện để chạy game
     @Override
     public void run() {
 
-        // 1 vong lap khong bao gio dung
-        while (true) {
+        do {
+            // 1 vong lap khong bao gio dung
+            while (!ketThuc) {
 
-            repaint(); // goi lai paint
+                repaint(); // goi lai paint
 
-            ongnuoc1.giamX(); // goi den phuong thuc giamX cua class OngNuoc
-            ongnuoc2.giamX();
-            ongnuoc3.giamX();
-            ongnuoc4.giamX();
+                ongnuoc1.giamX(); // goi den phuong thuc giamX cua class OngNuoc
+                ongnuoc2.giamX();
+                ongnuoc3.giamX();
+                ongnuoc4.giamX();
 
-            try {
-                Thread.sleep(15); // chuong trinh dung lai 20 ms
-            } catch (InterruptedException e) {
+                try {
+                    Thread.sleep(10); // chuong trinh dung lai 20 ms
+                } catch (InterruptedException e) {
+                }
+
+                // goi den phuong thuc .... cua class OngNuoc
+                if (ongnuoc1.laplaiX()) {
+                    xuathien++;
+                }
+
+                ongnuoc2.laplaiX();
+                ongnuoc3.laplaiX();
+                ongnuoc4.laplaiX();
+                if (xuathien >= 2) {
+                    ConMoi.xuatHien(ongnuoc1);
+                }
+
+                if (chet() == true && bl1) {
+                    ketThuc = true;
+                    ongnuoc1 = new Ong(1000 + 280 * 0);
+                    ongnuoc2 = new Ong(1000 + 280 * 1);
+                    ongnuoc3 = new Ong(1000 + 280 * 2);
+                    ongnuoc4 = new Ong(1000 + 280 * 3);
+                }
+
+                if (chet() == true) {
+                    bl1 = true;
+                }
+
+                conchimT.tangY(); // con chim tu roi xuong dat chet
+
+                quaOngTangDiem(conchimT, ongnuoc1);
+                quaOngTangDiem(conchimT, ongnuoc2);
+                quaOngTangDiem(conchimT, ongnuoc3);
+                quaOngTangDiem(conchimT, ongnuoc4);
             }
-
-            ongnuoc1.laplaiX(); // goi den phuong thuc .... cua class OngNuoc
-            ongnuoc2.laplaiX();
-            ongnuoc3.laplaiX();
-            ongnuoc4.laplaiX();
-
-            conchimT.tangY(); // con chim tu roi xuong dat chet
-
-            if (chet() == true && bl5) {
-                ketThuc = true;
-                threadT.stop();
-            }
-            
-            if (chet() == true) {
-                bl5 = true;
-            }
-
-            quaOngTangDiem(conchimT, ongnuoc1);
-            quaOngTangDiem(conchimT, ongnuoc2);
-            quaOngTangDiem(conchimT, ongnuoc3);
-            quaOngTangDiem(conchimT, ongnuoc4);
-
-        }
+        } while (ketThuc);
 
     }
 
