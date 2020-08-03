@@ -50,7 +50,6 @@ public class Controller implements IController {
     public Controller() {
         getComponents();
     }
-
     private void getComponents() {
         end = false;
         tongNuocDi = 0;

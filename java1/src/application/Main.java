@@ -9,7 +9,6 @@ import javafx.stage.WindowEvent;
 import view.View;
 
 public class Main extends Application {
-// Bat dau khoi tao stage
 
     @Override
     public void start(Stage primaryStage) {

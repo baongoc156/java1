@@ -15,11 +15,11 @@ public class ComputerPlayer implements Player {
     public static int maxDepth = 6; // do sau toi da
     public static int maxMove = 4;  // so o tiep theo dem xet toi da
 
-    public int[] AScore = {0, 4, 27, 256, 1458};// Mang diem tan cong 0,4,28,256,2308
-    public int[] DScore = {0, 2, 9, 99, 769};  // Mang diem phong ngu 0,1,9,85,769
+//    public int[] AScore = {0, 4, 27, 256, 1458};// Mang diem tan cong 0,4,28,256,2308
+//    public int[] DScore = {0, 2, 9, 99, 769};  // Mang diem phong ngu 0,2,9,99,769
 
-    //public int[] AScore = { 0, 9, 54, 169, 1458 };  // Mang diem tan cong
-    //public int[] DScore = {0, 3, 27, 99, 729};// Mang diem phong ngu
+    public int[] AScore = { 0, 9, 54, 169, 1458 };  // Mang diem tan cong
+    public int[] DScore = {0, 3, 27, 99, 729};// Mang diem phong ngu
     public boolean cWin = false;
     public Point goPoint;
 
@@ -32,8 +32,7 @@ public class ComputerPlayer implements Player {
     public void evalChessBoard(int player, EvalBoard eBoard) {
         int row, col;
         int ePC, eHuman;
-        eBoard.resetBoard(); // reset toan bo diem trang thai cua toan bo o co 
-        // Duyet theo hang
+        eBoard.resetBoard(); 
         for (row = 0; row < eBoard.width; row++) {
             for (col = 0; col < eBoard.height - 4; col++) {
                 ePC = 0;
@@ -48,7 +47,6 @@ public class ComputerPlayer implements Player {
                         ePC++;
                     }
                 }
-                // trong vong 5 o khong co quan dich
                 if (eHuman * ePC == 0 && eHuman != ePC) {
                     for (int i = 0; i < 5; i++) {
                         if (boardState.getPosition(row, col + i) == 0) { // neu o chua danh
@@ -213,7 +211,6 @@ public class ComputerPlayer implements Player {
     }
 
     private int maxValue(BoardState state, int alpha, int beta, int depth) {
-
         eBoard.MaxPos();  // tinh toa do co diem cao nhat
         int value = eBoard.evaluationBoard; // gia tri max hien tai
         if (depth >= maxDepth) {
@@ -322,5 +319,4 @@ public class ComputerPlayer implements Player {
     public Point movePoint(int player) {
         return AI(player);
     }
-
 }
