@@ -37,10 +37,10 @@ public class View implements EventHandler<ActionEvent> {
     private Button btnHuman;
     private Button btnComputer;
     private Button btnExit;
-//    private Button btnUndo;
-//    private Button btnLoad;
-//    private Button btnSave;
-//    private Button btnAbout;
+    private Button btnUndo;
+    private Button btnLoad;
+    private Button btnSave;
+    private Button btnAbout;
     private Labeled timePlayer1, timePlayer2;
     private BoardState boardState;
     private ComputerPlayer computer;

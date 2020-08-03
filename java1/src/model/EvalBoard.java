@@ -13,7 +13,6 @@ public class EvalBoard {
         this.height = height;
         this.width = width;
         EBoard = new int[height][width];
-        // ResetBoard();
     }
 
     public void resetBoard() {
