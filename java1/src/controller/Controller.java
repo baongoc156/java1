@@ -144,11 +144,13 @@ public class Controller implements IController {
             Point point = new Point(x, y);
             point.setPlayer(1);
             stack.push(point);
+            stack.push(point);
             tongNuocDi++;
         } else {
             arrayButtonChess[x][y].setGraphic(new ImageView(imageO));
             Point point = new Point(x, y);
             point.setPlayer(2);
+            stack.push(point);
             stack.push(point);
             tongNuocDi++;
         }
@@ -248,6 +250,7 @@ public class Controller implements IController {
     @Override
     public void undo(Button[][] arrayButtonChess) {
         if (!stack.isEmpty()) {
+            tongNuocDi--;
             tongNuocDi--;
             Point point = stack.pop();
             getBoardState();

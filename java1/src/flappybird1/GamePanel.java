@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
@@ -111,10 +113,11 @@ public class GamePanel extends JPanel implements Runnable {
 
                 if (chet() == true && bl1) {
                     ketThuc = true;
-                    ongnuoc1 = new Ong(1000 + 280 * 0);
-                    ongnuoc2 = new Ong(1000 + 280 * 1);
-                    ongnuoc3 = new Ong(1000 + 280 * 2);
-                    ongnuoc4 = new Ong(1000 + 280 * 3);
+                    try {
+                        threadT.wait();
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
 
                 if (chet() == true) {

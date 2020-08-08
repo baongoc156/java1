@@ -4,11 +4,12 @@
 package model;
 
 public interface Player {
-	public Point movePoint(int player);
 
-	int getPlayerFlag();
+    public Point movePoint(int player);
 
-	void setPlayerFlag(int playerFlag);
+    int getPlayerFlag();
 
-	BoardState getBoardState();
+    void setPlayerFlag(int playerFlag);
+
+    BoardState getBoardState();
 }

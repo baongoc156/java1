@@ -114,7 +114,7 @@ public class View implements EventHandler<ActionEvent> {
         AnchorPane.setLeftAnchor(imgView, 30.0);
         AnchorPane.setRightAnchor(imgView, 30.0);
         anchorPaneLogo.getChildren().add(imgView);
-        // Computer
+//        // Computer
         btnComputer = new Button("Chơi với máy");
         btnComputer.setId("btnMenu");
         btnComputer.setOnAction(this);
@@ -122,7 +122,7 @@ public class View implements EventHandler<ActionEvent> {
         AnchorPane.setLeftAnchor(btnComputer, 30.0);
         AnchorPane.setRightAnchor(btnComputer, 30.0);
         anchorPaneMenu.getChildren().add(btnComputer);
-        // Human
+//        // Human
         btnHuman = new Button("Hai người chơi");
         btnHuman.setId("btnMenu");
         btnHuman.setOnAction(this);
@@ -132,37 +132,37 @@ public class View implements EventHandler<ActionEvent> {
         anchorPaneMenu.getChildren().add(btnHuman);
 
         // Undo
-//        btnUndo = new Button("Quay lại");
-//        btnUndo.setId("btnMenu");
-//        btnUndo.setOnAction(this);
-//        AnchorPane.setTopAnchor(btnUndo, 90.0);
-//        AnchorPane.setLeftAnchor(btnUndo, 30.0);
-//        AnchorPane.setRightAnchor(btnUndo, 30.0);
-//        anchorPaneMenu.getChildren().add(btnUndo);
+        btnUndo = new Button("Quay lại");
+        btnUndo.setId("btnMenu");
+        btnUndo.setOnAction(this);
+        AnchorPane.setTopAnchor(btnUndo, 90.0);
+        AnchorPane.setLeftAnchor(btnUndo, 30.0);
+        AnchorPane.setRightAnchor(btnUndo, 30.0);
+        anchorPaneMenu.getChildren().add(btnUndo);
         // Save
-//        btnSave = new Button("Lưu lại");
-//        btnSave.setId("btnMenu");
-//        btnSave.setOnAction(this);
-//        AnchorPane.setTopAnchor(btnSave, 130.0);
-//        AnchorPane.setLeftAnchor(btnSave, 30.0);
-//        AnchorPane.setRightAnchor(btnSave, 30.0);
-//        anchorPaneMenu.getChildren().add(btnSave);
+        btnSave = new Button("Lưu lại");
+        btnSave.setId("btnMenu");
+        btnSave.setOnAction(this);
+        AnchorPane.setTopAnchor(btnSave, 130.0);
+        AnchorPane.setLeftAnchor(btnSave, 30.0);
+        AnchorPane.setRightAnchor(btnSave, 30.0);
+        anchorPaneMenu.getChildren().add(btnSave);
 //        // Load
-//        btnLoad = new Button("Load lại");
-//        btnLoad.setId("btnMenu");
-//        btnLoad.setOnAction(this);
-//        AnchorPane.setTopAnchor(btnLoad, 170.0);
-//        AnchorPane.setLeftAnchor(btnLoad, 30.0);
-//        AnchorPane.setRightAnchor(btnLoad, 30.0);
-//        anchorPaneMenu.getChildren().add(btnLoad);
+        btnLoad = new Button("Load lại");
+        btnLoad.setId("btnMenu");
+        btnLoad.setOnAction(this);
+        AnchorPane.setTopAnchor(btnLoad, 170.0);
+        AnchorPane.setLeftAnchor(btnLoad, 30.0);
+        AnchorPane.setRightAnchor(btnLoad, 30.0);
+        anchorPaneMenu.getChildren().add(btnLoad);
 //        // About
-//        btnAbout = new Button("Thông tin");
-//        btnAbout.setId("btnMenu");
-//        btnAbout.setOnAction(this);
-//        AnchorPane.setTopAnchor(btnAbout, 210.0);
-//        AnchorPane.setLeftAnchor(btnAbout, 30.0);
-//        AnchorPane.setRightAnchor(btnAbout, 30.0);
-//        anchorPaneMenu.getChildren().add(btnAbout);
+        btnAbout = new Button("Thông tin");
+        btnAbout.setId("btnMenu");
+        btnAbout.setOnAction(this);
+        AnchorPane.setTopAnchor(btnAbout, 210.0);
+        AnchorPane.setLeftAnchor(btnAbout, 30.0);
+        AnchorPane.setRightAnchor(btnAbout, 30.0);
+        anchorPaneMenu.getChildren().add(btnAbout);
         // exit
         btnExit = new Button("Thoát");
         btnExit.setId("btnMenu");
@@ -209,18 +209,18 @@ public class View implements EventHandler<ActionEvent> {
         if (e.getSource() == btnComputer) {
             replayComputer();
         }
-//        if (e.getSource() == btnUndo) {
-//            controller.undo(arrayButtonChess);
-//        }
-//        if (e.getSource() == btnLoad) {
-//            controller.open(arrayButtonChess);
-//        }
-//        if (e.getSource() == btnSave) {
-//            controller.save();
-//        }
-//        if (e.getSource() == btnAbout) {
-//            aboutUs();
-//        }
+        if (e.getSource() == btnUndo) {
+            controller.undo(arrayButtonChess);
+        }
+        if (e.getSource() == btnLoad) {
+            controller.open(arrayButtonChess);
+        }
+        if (e.getSource() == btnSave) {
+            controller.save();
+        }
+        if (e.getSource() == btnAbout) {
+            aboutUs();
+        }
     }
     // che do dau voi may
 
