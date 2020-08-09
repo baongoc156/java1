@@ -1,7 +1,7 @@
 package QLSV;
 
 import java.awt.Color;
-import java.awt.Rectangle;
+import java.sql.SQLException;
 import javax.swing.border.Border;
 
 import java.text.SimpleDateFormat;
@@ -10,22 +10,10 @@ import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class QLSVController {
 
-    private enum ERROR {
-        MASV,
-        HOTEN,
-        GIOITINH,
-        NGAYSINH,
-        KHOA,
-        LOP,
-        MAIL,
-        SDT,
-        DIACHI
-    }
     //fields
     private QLSVModel model;
     private QLSVView view;
@@ -35,16 +23,8 @@ public class QLSVController {
         return model;
     }
 
-    public void setModel(QLSVModel model) {
-        this.model = model;
-    }
-
     public QLSVView getView() {
         return view;
-    }
-
-    public void setView(QLSVView view) {
-        this.view = view;
     }
 
     //ocnstructor
@@ -67,38 +47,37 @@ public class QLSVController {
         ///Nút thêm
         view.getBtn_them().addActionListener((x) -> {
             try {
-                //view.setTxtAlert("", Color.red);
                 SinhVien sv = AddSV(view);
+                //cmt vô đây
                 if (sv == null) {
-                    System.out.println("bạn đã nhập sai");
-                    //view.setTxtAlert("Error: bạn đã nhập sai!!!", Color.red);
                     return;
                 }
-                if (model.CheckTrungMa(model, sv.getMaSV())) {
-                    System.out.println("trùng mã");
-                    //view.setTxtAlert("Error: trùng mã!!!", Color.red);
+                //cmt vô đây
+                if (model.checkTrungMa(sv.getMaSV())) {
                     return;
                 }
                 model.add(sv);
                 ShowTable(model.getDssv());
-            } catch (Exception ex) {
+            } catch (SQLException ex) {
                 Logger.getLogger(QLSVController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
         //Nút Tìm
         view.getBtn_Tim().addActionListener((e) -> {
             String maCanTim = view.getTxt_Tim().getText();
-            System.out.println(maCanTim);
+            //cmt vô đây
             if (maCanTim.equals("")) {
-                System.out.println("nhập mã môn học cần tim");
-                //view.setTxtAlert("Error: nhập mã môn học cần tim!!!", Color.red);
                 return;
             }
 
-            LinkedList<SinhVien> mhs = model.Find(maCanTim);
+            LinkedList<SinhVien> mhs = new LinkedList<>();
+            try {
+                mhs = model.find(maCanTim);
+            } catch (SQLException ex) {
+                Logger.getLogger(QLSVController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //cmt vô đây
             if (mhs.isEmpty()) {
-                System.out.println("không tìm thấy mã môn học cần tim");
-                //view.setTxtAlert("Warning: không tìm thấy mã môn học cần tim!!!", Color.orange);
                 return;
             }
 
@@ -135,7 +114,7 @@ public class QLSVController {
         String khoa = view.getTxt_Khoa().getText();
         String lop = view.getTxt_Lop().getText();
         String sDT = view.getTxt_SDT().getText();
-        
+
         //điều kiện-------------
         if (maSV.equals("")) {
             //code chỉnh border
@@ -143,12 +122,13 @@ public class QLSVController {
         }
         if (tenSV.equals("")) {
             view.getTxt_hoTen().setBorder(nhapSai);
-        }if (view.getGrGioiTInh().getSelection() == null) {
-            
+        }
+        if (view.getGrGioiTInh().getSelection() == null) {
+
         }
         //ghi code vô đây
         //
-        
+
         if (!maSV.equals("") && !tenSV.equals("")) {
             Date d = new Date(ngaySinh);
             return new SinhVien(maSV, tenSV, gioiTinh, d, khoa, lop, email, sDT, diaChi);

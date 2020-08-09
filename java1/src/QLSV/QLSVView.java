@@ -2,7 +2,6 @@ package QLSV;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -51,11 +50,12 @@ public class QLSVView extends javax.swing.JFrame {
         txt_Tim = new javax.swing.JTextField();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         jLabel1 = new javax.swing.JLabel();
-        checkNam = new javax.swing.JCheckBox();
-        checkNu = new javax.swing.JCheckBox();
+        checkNam = new javax.swing.JRadioButton();
+        checkNu = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        setLocation(new java.awt.Point(150, 20));
         setResizable(false);
 
         maSV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -152,6 +152,7 @@ public class QLSVView extends javax.swing.JFrame {
         jLabel1.setText("QUẢN LÝ SINH VIÊN");
 
         grGioiTInh.add(checkNam);
+        checkNam.setSelected(true);
         checkNam.setText("Nam");
         checkNam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -335,13 +336,7 @@ public class QLSVView extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(QLSVView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(QLSVView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(QLSVView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(QLSVView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -460,8 +455,8 @@ public class QLSVView extends javax.swing.JFrame {
     private javax.swing.JButton btn_Tim;
     private javax.swing.JButton btn_Xoa;
     private javax.swing.JButton btn_them;
-    private javax.swing.JCheckBox checkNam;
-    private javax.swing.JCheckBox checkNu;
+    private javax.swing.JRadioButton checkNam;
+    private javax.swing.JRadioButton checkNu;
     private javax.swing.JLabel diaChi;
     private javax.swing.JLabel email;
     private javax.swing.Box.Filler filler1;
