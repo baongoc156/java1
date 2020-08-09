@@ -104,7 +104,7 @@ public class Minefield {
      */
     public int getTileValue(int x, int y) {
         if (gameState == GameState.NOT_STARTED) {
-            throw new IllegalStateException("you must call uncover at least once before using getTileValue");
+            throw new IllegalStateException("");
         }
 
         return valuesArray[x][y];
@@ -134,7 +134,7 @@ public class Minefield {
      */
     public void setTileState(int x, int y, TileState newState) {
         if (isFinished()) {
-            throw new IllegalStateException("the game has finished");
+            throw new IllegalStateException("Game end");
         }
 
         switch (newState) {
@@ -154,7 +154,7 @@ public class Minefield {
                 break;
 
             default:
-                throw new IllegalArgumentException("newState is not a valid tile state");
+                throw new IllegalArgumentException("");
         }
     }
 
@@ -166,7 +166,7 @@ public class Minefield {
      */
     public void uncover(int x, int y) {
         if (isFinished()) {
-            throw new IllegalStateException("the game has finished");
+            throw new IllegalStateException("Game end");
         }
 
         // kiểm tra có phải game mới hay không
